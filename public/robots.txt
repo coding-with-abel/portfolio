@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abeldev.vercel.app/sitemap.xml
