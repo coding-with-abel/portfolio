@@ -663,7 +663,7 @@ export default function Page() {
         <Reveal>
           <div className="contact-intro">
             <SectionHeading
-              eyebrow="07 / Contact"
+              eyebrow="06 / Contact"
               title="Let's build something remarkable together."
               copy="Have an idea, project or business that needs a website? 
               I'm available for freelance projects and full-time opportunities."
