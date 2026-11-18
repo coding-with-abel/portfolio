@@ -1429,3 +1429,8 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+*, *::before, *::after {
+	font-family: var(--font-code), ui-monospace, monospace;
+}

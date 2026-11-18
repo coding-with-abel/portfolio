@@ -32,7 +32,14 @@ import {
   Zap,
 } from "lucide-react";
 
-const navItems = ["Home", "About", "Skills", "Projects", "Services", "Contact"];
+const navItems = [
+  { label: "Home", id: "home" },
+  { label: "About Me", id: "about" },
+  {label: "Skills", id: "skills"},
+  { label: "Portfolio", id: "projects" },
+  { label: "Services", id: "services" },
+  { label: "Contact", id: "contact" },
+];
 
 const skillGroups = [
   {
@@ -176,19 +183,34 @@ const services = [
 
 const journey = [
   [
-    "2024",
+    "2021",
     "Started Web Development",
     "Learning the fundamentals and turning curiosity into craft.",
   ],
   [
+    "2022",
+    "Started Building Landing Pages",
+    "Started building projects with just html and css and a little javascript",
+  ],
+  [
+    "2023",
+    "Gap Year",
+    "Built way less that the previous year because of school.",
+  ],
+  [
+    "2024",
+    "Started Learning Backend",
+    "Project based learning, i learnt node js, express...",
+  ],
+  [
     "2025",
     "Built Full-Stack Applications",
-    "Connecting thoughtful interfaces to reliable backends.",
+    "Started connecting thoughtful interfaces to reliable backends.",
   ],
   [
     "2026",
     "Development & Freelance Projects",
-    "Building useful products for people with ambitious ideas.",
+    "Worked with a couple of companies, building useful products and converting their ideas to code.",
   ],
 ];
 
@@ -235,6 +257,68 @@ function SectionHeading({
   );
 }
 
+const footerLinkStyle = {
+	display: "inline-flex",
+	alignItems: "center",
+	gap: "6px",
+} as const;
+
+function GithubIcon({ size = 16 }: { size?: number }) {
+	return (
+		<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+			<path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+		</svg>
+	);
+}
+
+function WhatsappIcon({ size = 16 }: { size?: number }) {
+	return (
+		<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+			<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+		</svg>
+	);
+}
+
+function XIcon({ size = 16 }: { size?: number }) {
+	return (
+		<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+			<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+		</svg>
+	);
+}
+
+function InstagramIcon({ size = 16 }: { size?: number }) {
+	return (
+		<svg
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			aria-hidden="true"
+		>
+			<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+			<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+			<line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+		</svg>
+	);
+}
+
+const ROCKET_STEPS = 36;
+const rocketPath = Array.from({ length: ROCKET_STEPS + 1 }, (_, i) => {
+	const a = (i / ROCKET_STEPS) * Math.PI * 2;
+	const rx = 55; // loop width
+	const ry = 22; // loop height
+	const dx = rx * Math.sin(a);
+	const dy = -ry * Math.cos(a);
+	let deg = (Math.atan2(dy, dx) * 180) / Math.PI;
+	if (deg < -91) deg += 360;
+	return { x: -rx * Math.cos(a), y: -ry * Math.sin(a), rotate: deg + 45 };
+});
+
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("All");
@@ -270,23 +354,22 @@ export default function Page() {
   <span>Abeldev</span>
 </a>
           <div className="desktop-nav">
-            {navItems.map((item) => (
-              <a key={item}
-    href={`#${item.toLowerCase()}`}
-    onClick={() => {
-      setMenuOpen(false);
-      // Smooth scroll to section
-      setTimeout(() => {
-        document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }}>
-                {item}
-              </a>
-            ))}
-          </div>
-          <a href="#contact" className="nav-cta">
-            Let&apos;s talk <ArrowUpRight size={15} />
-          </a>
+  {navItems.map((item) => (
+    <a
+      key={item.id}
+      href={`#${item.id}`}
+      onClick={() => {
+        setMenuOpen(false);
+        // Smooth scroll to section
+        setTimeout(() => {
+          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }}
+    >
+      {item.label}
+    </a>
+  ))}
+</div>
           <button
             className="menu-button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -298,28 +381,28 @@ export default function Page() {
         <AnimatePresence>
           {menuOpen && (
             <motion.div
-              className="mobile-nav"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              {navItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    // Smooth scroll to section
-                    setTimeout(() => {
-                      document.getElementById(item.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                >
-                  {item}
-                  <ArrowUpRight size={15} />
-                </a>
-              ))}
-            </motion.div>
+  className="mobile-nav"
+  initial={{ opacity: 0, height: 0 }}
+  animate={{ opacity: 1, height: "auto" }}
+  exit={{ opacity: 0, height: 0 }}
+>
+  {navItems.map((item) => (
+    <a
+      key={item.id}
+      href={`#${item.id}`}
+      onClick={() => {
+        setMenuOpen(false);
+        // Smooth scroll to section
+        setTimeout(() => {
+          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }}
+    >
+      {item.label}
+      <ArrowUpRight size={15} />
+    </a>
+  ))}
+</motion.div>
           )}
         </AnimatePresence>
       </nav>
@@ -342,10 +425,41 @@ export default function Page() {
               Full-Stack Developer <span>/</span> Digital Builder
             </p>
             <h1>
-              Crafting the
-              <br />
-              <em>future</em> of web<span className="period">.</span>
-            </h1>
+	Crafting the
+	<br />
+	<em>future</em> of web<span className="period">.</span>
+	<span
+		aria-hidden="true"
+		style={{
+			position: "relative",
+			display: "inline-block",
+			width: 150,
+			height: 0,
+			marginLeft: 8,
+			verticalAlign: "middle",
+			pointerEvents: "none",
+		}}
+	>
+		<motion.span
+			style={{
+				position: "absolute",
+				left: "50%",
+				top: "50%",
+				marginLeft: -18,
+				marginTop: -18,
+				color: "#a78bfa",
+			}}
+			animate={{
+				x: rocketPath.map((p) => p.x),
+				y: rocketPath.map((p) => p.y),
+				rotate: rocketPath.map((p) => p.rotate),
+			}}
+			transition={{ duration: 6, ease: "linear", repeat: Infinity }}
+		>
+			<Rocket size={36} strokeWidth={1.5} />
+		</motion.span>
+	</span>
+</h1>
             <p className="hero-description">
               Building modern, responsive and scalable digital experiences with
               clean code and thoughtful design.
@@ -444,7 +558,7 @@ export default function Page() {
           <SectionHeading
             eyebrow="01 / About"
             title="A developer who builds with purpose."
-            copy="I'm Olanrewaju Abel, a full-stack developer focused on turning thoughtful ideas into functional, memorable digital products. I work across the stack — from first sketch to final deploy — with a soft spot for the details that make a product feel alive."
+            copy="I'm Olanrewaju Abel, a full-stack developer focused on turning thoughtful ideas into functional, memorable digital products. I work across the stack, from first sketch to final deploy with a soft spot for the details that make a product feel alive."
           />
         </Reveal>
         <Reveal className="about-grid" delay={0.12}>
@@ -482,7 +596,7 @@ export default function Page() {
       <section id="skills" className="content-section">
         <Reveal>
           <SectionHeading
-            eyebrow="02 / Capabilities"
+            eyebrow="02 / Skills"
             title="Tools for turning ideas into reality."
             copy="A practical toolkit, always evolving. I care less about collecting technologies and more about knowing when to reach for the right one."
           />
@@ -605,7 +719,7 @@ export default function Page() {
         <Reveal>
           <SectionHeading
             eyebrow="04 / Services"
-            title="What I can build for you."
+            title="What I can build for you?"
             copy="Good work starts with listening. I bring a thoughtful, end-to-end approach to every build — whether you need a landing page or a full product."
           />
         </Reveal>
@@ -784,29 +898,42 @@ export default function Page() {
           <p>Crafting the future of web.</p>
         </div>
         <div className="footer-links">
-          <a
-            href="https://github.com/coding-with-abel"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-          <a href="mailto:olanrewajuoluwafikunayomi@gmail.com">Email</a>
-          <a
-            href="https://wa.me/2349018901734"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Whatsapp
-          </a>
-          <a
-            href="https://x.com/defi_abel"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Twitter
-          </a>
-        </div>
+	<a
+		href="https://github.com/coding-with-abel"
+		target="_blank"
+		rel="noreferrer"
+		style={footerLinkStyle}
+	>
+		<GithubIcon /> GitHub
+	</a>
+	<a href="mailto:olanrewajuoluwafikunayomi@gmail.com" style={footerLinkStyle}>
+		<Mail size={16} /> Email
+	</a>
+	<a
+		href="https://wa.me/2349018901734"
+		target="_blank"
+		rel="noreferrer"
+		style={footerLinkStyle}
+	>
+		<WhatsappIcon /> Whatsapp
+	</a>
+	<a
+		href="https://x.com/abelonsteroids?s=11"
+		target="_blank"
+		rel="noreferrer"
+		style={footerLinkStyle}
+	>
+		<XIcon /> Twitter
+	</a>
+	<a
+	href="https://www.instagram.com/abel._dev/"
+	target="_blank"
+	rel="noreferrer"
+	style={footerLinkStyle}
+>
+	<InstagramIcon /> Instagram
+</a>
+</div>
         <p className="copyright">© 2026 abeldev. All rights reserved.</p>
       </footer>
     </main>
