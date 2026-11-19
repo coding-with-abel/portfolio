@@ -378,34 +378,49 @@ export default function Page() {
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-  className="mobile-nav"
-  initial={{ opacity: 0, height: 0 }}
-  animate={{ opacity: 1, height: "auto" }}
-  exit={{ opacity: 0, height: 0 }}
->
-  {navItems.map((item) => (
-    <a
-      key={item.id}
-      href={`#${item.id}`}
-      onClick={() => {
-        setMenuOpen(false);
-        // Smooth scroll to section
-        setTimeout(() => {
-          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }}
-    >
-      {item.label}
-      <ArrowUpRight size={15} />
-    </a>
-  ))}
-</motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+
+	  <AnimatePresence>
+	{menuOpen && (
+		<motion.div
+			key="mobile-menu"
+			className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			onClick={() => setMenuOpen(false)}
+		>
+			<motion.div
+				className="absolute left-4 right-4 top-20 rounded-3xl border border-white/10 bg-[#14151b] p-2 shadow-2xl"
+				initial={{ opacity: 0, y: -12, scale: 0.97 }}
+				animate={{ opacity: 1, y: 0, scale: 1 }}
+				exit={{ opacity: 0, y: -12, scale: 0.97 }}
+				transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+				onClick={(event) => event.stopPropagation()}
+			>
+				{navItems.map((item) => (
+					<a
+						key={item.id}
+						href={`#${item.id}`}
+						className="group flex items-center justify-between rounded-2xl px-4 py-3.5 text-base text-white/70 transition-all duration-200 hover:bg-white/5 hover:pl-6 hover:text-white active:bg-white/10"
+						onClick={() => {
+							setMenuOpen(false);
+							setTimeout(() => {
+								document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+							}, 100);
+						}}
+					>
+						{item.label}
+						<ArrowUpRight
+							size={16}
+							className="-translate-x-1 text-violet-400 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+						/>
+					</a>
+				))}
+			</motion.div>
+		</motion.div>
+	)}
+</AnimatePresence>
 
       <section
         id="home"
@@ -466,10 +481,10 @@ export default function Page() {
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#projects">
-                View my work <ArrowDown size={17} />
+                View my work
               </a>
               <a className="button button-ghost" href="#contact">
-                Let&apos;s work together <ArrowUpRight size={17} />
+                Let&apos;s work together 
               </a>
             </div>
           </Reveal>
@@ -593,10 +608,35 @@ export default function Page() {
         </Reveal>
       </section>
 
+	  <section className="content-section journey-section">
+        <Reveal>
+          <SectionHeading
+            eyebrow="02 / Journey"
+            title="Still learning. Always building."
+          />
+        </Reveal>
+        <div className="journey-list">
+          {journey.map(([year, title, copy], index) => (
+            <Reveal key={year} delay={index * 0.1}>
+              <div className="journey-item">
+                <span className="journey-year">{year}</span>
+                <span className="journey-line">
+                  <span />
+                </span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       <section id="skills" className="content-section">
         <Reveal>
           <SectionHeading
-            eyebrow="02 / Skills"
+            eyebrow="03 / Skills"
             title="Tools for turning ideas into reality."
             copy="A practical toolkit, always evolving. I care less about collecting technologies and more about knowing when to reach for the right one."
           />
@@ -633,7 +673,7 @@ export default function Page() {
         <Reveal>
           <div className="projects-heading">
             <SectionHeading
-              eyebrow="03 / Selected work"
+              eyebrow="04 / Selected work"
               title="Things I've built."
               copy="A selection of experiments and client-ready products. Each one is a chance to make something useful feel effortless."
             />
@@ -718,59 +758,29 @@ export default function Page() {
       <section id="services" className="content-section services-section">
         <Reveal>
           <SectionHeading
-            eyebrow="04 / Services"
+            eyebrow="05 / Services"
             title="What I can build for you?"
             copy="Good work starts with listening. I bring a thoughtful, end-to-end approach to every build — whether you need a landing page or a full product."
           />
         </Reveal>
         <div className="services-grid">
-          {services.map(([icon, title, copy], index) => {
-  const Icon = icon;
-  return (
-    <Reveal key={title} delay={index * 0.06}>
-      <div 
-        className="service-card"
-        onClick={() => {
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        }}
-        style={{ cursor: 'pointer' }}
-      >
-        <span className="service-number">0{index + 1}</span>
-        <Icon size={23} />
-        <h3>{title}</h3>
-        <p>{copy}</p>
-        <ArrowUpRight className="service-arrow" size={17} />
-      </div>
-    </Reveal>
-  );
-})}
-        </div>
+	{services.map(([icon, title, copy], index) => {
+		const Icon = icon;
+		return (
+			<Reveal key={title} delay={index * 0.06}>
+				<div className="service-card">
+					<span className="service-number">0{index + 1}</span>
+					<Icon size={23} />
+					<h3>{title}</h3>
+					<p>{copy}</p>
+				</div>
+			</Reveal>
+		);
+	})}
+</div>
       </section>
 
-      <section className="content-section journey-section">
-        <Reveal>
-          <SectionHeading
-            eyebrow="05 / Journey"
-            title="Still learning. Always building."
-          />
-        </Reveal>
-        <div className="journey-list">
-          {journey.map(([year, title, copy], index) => (
-            <Reveal key={year} delay={index * 0.1}>
-              <div className="journey-item">
-                <span className="journey-year">{year}</span>
-                <span className="journey-line">
-                  <span />
-                </span>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      
 
       
       <section id="contact" className="content-section contact-section">
@@ -779,21 +789,9 @@ export default function Page() {
             <SectionHeading
               eyebrow="06 / Contact"
               title="Let's build something remarkable together."
-              copy="Have an idea, project or business that needs a website? 
-              I'm available for freelance projects and full-time opportunities."
+              copy="Have an idea, project or business that needs a website?, reach out and connect with me."
             />
-            <div className="contact-links">
-              <a href="mailto:olanrewajuoluwafikunayomi@gmail.com">
-                <Mail size={17} /> Email me <ArrowUpRight size={15} />
-              </a>
-              <a
-                href="https://github.com/coding-with-abel"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GitBranch size={17} /> GitHub <ArrowUpRight size={15} />
-              </a>
-            </div>
+            
           </div>
         </Reveal>
         <Reveal delay={0.12}>
